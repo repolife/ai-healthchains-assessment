@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './PatientList.css';
 import { apiService } from '../services/apiService';
+import { debounce } from 'lodash';
 
 const PatientList = ({ onSelectPatient }) => {
   const [patients, setPatients] = useState([]);
@@ -9,6 +10,7 @@ const PatientList = ({ onSelectPatient }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [pagination, setPagination] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
 
   // TODO: Implement the fetchPatients function
   // This function should:
@@ -21,6 +23,7 @@ const PatientList = ({ onSelectPatient }) => {
     setLoading(true);
     try {
      const response = await apiService.getPatients(currentPage, 10, searchTerm);
+      console.log(response);
      setPatients(response.patients);
      setPagination(response.pagination);
     } catch (err) {
@@ -31,22 +34,23 @@ const PatientList = ({ onSelectPatient }) => {
     }
   };
 
+
   useEffect(() => {
     fetchPatients();
-  }, []);
+  }, [searchTerm, currentPage]);
 
 
-  const filteredPatients = patients.filter((patient) => {
-    return patient.name.toLowerCase().includes(searchTerm.toLowerCase());
-  });
-
-  // TODO: Implement search functionality
+    // TODO: Implement search functionality
   // Add a debounce or handle search input changes
-  const handleSearch = (e) => {
-    console.log(e.target.value);
-    setSearchTerm(e.target.value);
+  const debounedSearchTerm = useMemo(() => debounce((value) => {
+    setSearchTerm(value);
+  }, 500), []);
+  
+const handleSearch = (e) => {
+    setSearchInput(e.target.value);
+    debounedSearchTerm(e.target.value);
   };
-
+    
   if (loading) {
     return (
       <div className="patient-list-container">
@@ -72,7 +76,7 @@ const PatientList = ({ onSelectPatient }) => {
           type="text"
           placeholder="Search patients..."
           className="search-input"
-          value={searchTerm}
+          value={searchInput}
           onChange={handleSearch}
         />
       </div>
@@ -82,7 +86,7 @@ const PatientList = ({ onSelectPatient }) => {
       {/* Each patient should be clickable and call onSelectPatient with patient.id */}
       <div className="patient-list">
         {/* Your implementation here */}
-        {filteredPatients && filteredPatients.length > 0 && filteredPatients.map((patient) => (
+        {patients && patients.length > 0 && patients.map((patient) => (
           <div
             key={patient.id}
             className="patient-card"
@@ -103,7 +107,22 @@ const PatientList = ({ onSelectPatient }) => {
       {/* Show pagination buttons if pagination data is available */}
       {pagination && (
         <div className="pagination">
-          {/* Your pagination implementation here */}
+          {/* Your pagination implementation here */}        <button
+          disabled={pagination.page === 1}
+          onClick={() => setCurrentPage(pagination.page - 1)}
+        >
+          Prev
+        </button>
+        <span>
+          Page {pagination.page} of {pagination.totalPages}
+        </span>
+        <button
+          disabled={pagination.page === pagination.totalPages}
+          onClick={() => setCurrentPage(pagination.page + 1)}
+        >
+          Next
+        </button>
+
         </div>
       )}
     </div>
