@@ -15,14 +15,11 @@ const ConsentManagement = ({ account, }) => {
     purpose: '',
   });
 
-  // TODO: Implement fetchConsents function
-  useEffect(() => {
-    const fetchConsents = async () => {
+const fetchConsents = async () => {
       setLoading(true);
       try {
-        // TODO: Call apiService.getConsents with appropriate filters
-        // TODO: Update consents state
-        const consentsData = await apiService.getConsents(formData.patientId, filterStatus);
+        
+        const consentsData = await apiService.getConsents(formData.patientId, filterStatus === 'all' ? null : filterStatus);
         console.log('consentsData', consentsData);
         setConsents(consentsData.consents);
       } catch (err) {
@@ -32,15 +29,12 @@ const ConsentManagement = ({ account, }) => {
       }
     };
 
-    fetchConsents();
+
+  useEffect(() => {
+        fetchConsents(filterStatus);
   }, [filterStatus]);
 
-  // TODO: Implement createConsent function
-  // This should:
-  // 1. Sign a message using signMessage from useWeb3 hook
-  // 2. Call apiService.createConsent with the consent data and signature
-  // 3. Refresh the consents list
-  const handleCreateConsent = async (e) => {
+    const handleCreateConsent = async (e) => {
     e.preventDefault();
     if (!account) {
       alert('Please connect your wallet first');
@@ -48,29 +42,22 @@ const ConsentManagement = ({ account, }) => {
     }
 
     try {
-      // TODO: Implement consent creation with signature
-      // 1. Create a message to sign (e.g., "I consent to: {purpose} for patient: {patientId}")
-      // 2. Sign the message using signMessage
-      // 3. Call apiService.createConsent with patientId, purpose, account, and signature
-      // 4. Refresh consents and reset formu
       const message = `I consent to: ${formData.purpose} for patient: ${formData.patientId}`;
       const signature = await signMessage(message);
-      debugger
+
       await apiService.createConsent({patientId: formData.patientId, purpose: formData.purpose, walletAddress: account, signature});
+
       setShowCreateForm(false);
-      setFilterStatus('active')
     } catch (err) {
       alert('Failed to create consent: ' + err.message);
     }
   };
 
-  // TODO: Implement updateConsentStatus function
-  // This should update a consent's status (e.g., from pending to active)
   const handleUpdateStatus = async (consentId, newStatus) => {
     try {
-      // TODO: Call apiService.updateConsent to update the status
-      // TODO: Refresh consents list
       await apiService.updateConsent(consentId, { status: newStatus });
+     fetchConsents();
+      
       
     } catch (err) {
       alert('Failed to update consent: ' + err.message);

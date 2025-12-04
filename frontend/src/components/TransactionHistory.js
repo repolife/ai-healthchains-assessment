@@ -7,13 +7,13 @@ const TransactionHistory = ({ account }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // TODO: Implement fetchTransactions function
   useEffect(() => {
     const fetchTransactions = async () => {
       setLoading(true);
       try {
-        // TODO: Call apiService.getTransactions with account address if available
-        // TODO: Update transactions state
+        const transactionsData = await apiService.getTransactions(account);
+        console.log('transactionsData', transactionsData);
+        setTransactions(transactionsData.transactions);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -62,13 +62,24 @@ const TransactionHistory = ({ account }) => {
       </div>
 
       {/* TODO: Display transactions list */}
-      {/* Show: type, from, to, amount, currency, status, timestamp, blockchainTxHash */}
       <div className="transactions-list">
         {/* Your implementation here */}
-        <div className="placeholder">
-          <p>Transaction list will be displayed here</p>
-          <p>Implement the transaction list rendering</p>
-        </div>
+        {transactions && transactions.length > 0 ? transactions.map((transaction) => (
+          <div key={transaction.id} className="transaction-item">
+            <p>Type: {transaction.type}</p>
+            <p>From: {formatAddress(transaction.from)}</p>
+            <p>To: {formatAddress(transaction.to)}</p>
+            <p>Amount: {transaction.amount}</p>
+            <p>Currency: {transaction.currency}</p>
+            <p>Status: {transaction.status}</p>
+            <p>Timestamp: {formatDate(transaction.timestamp)}</p>
+            <p>Blockchain Tx Hash: {transaction.blockchainTxHash}</p>
+          </div>
+        )) : (
+          <div className="placeholder">
+            <p>No transactions found</p>
+          </div>
+        )}
       </div>
     </div>
   );

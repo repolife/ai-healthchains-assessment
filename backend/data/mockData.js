@@ -514,7 +514,7 @@ const mockData = {
       "purpose": "Third-Party Analytics Access",
       "walletAddress": "0x3f5CE5FBFe3E9af3971dD833D26bA9b5C936f0bE",
       "signature": null,
-      "status": "pending",
+      "status": "active",
       "createdAt": "2024-01-28T09:00:00Z",
       "blockchainTxHash": null
     },
@@ -645,7 +645,7 @@ const mockData = {
       "purpose": "Data Sharing with Research Institution",
       "walletAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
       "signature": "0x3b4e3692928e6eb104b0ed62fed93823ccdecc6fb37ca9f045c0b1984b5add24304b41f16abb56f857d827c933692af993da0a309b5699e9b5bc0e76fbfa17d61c",
-      "status": "pending",
+      "status": "active",
       "createdAt": "2025-12-04T21:58:04.481Z",
       "blockchainTxHash": null
     },
@@ -705,7 +705,7 @@ const mockData = {
       "purpose": "Research Study Participation",
       "walletAddress": "0xd860722e7ed78d8b0d136693895dab4af81c35e0",
       "signature": "0xf4f549ca97415d247b9984ac8ac94d4fc444b0d477a990117067b4887a985aca4842a2f776add8bb744fc8069f79c6950dbd79ce7c1a6b278c2e2b093bc76a951b",
-      "status": "pending",
+      "status": "active",
       "createdAt": "2025-12-04T22:19:00.669Z",
       "blockchainTxHash": null
     },
@@ -715,7 +715,7 @@ const mockData = {
       "purpose": "Insurance Provider Access",
       "walletAddress": "0xd860722e7ed78d8b0d136693895dab4af81c35e0",
       "signature": "0x99ee3b491e8ad85e3329b792177e9394d14abdd9249113888f1044f0ea409f0b35e66ee849881f185ad66906baf1c69e7ac6d7263b6ff97b2557f23cbecac4de1b",
-      "status": "pending",
+      "status": "active",
       "createdAt": "2025-12-04T22:20:33.758Z",
       "blockchainTxHash": null
     },
@@ -725,8 +725,38 @@ const mockData = {
       "purpose": "Third-Party Analytics Access",
       "walletAddress": "0xd860722e7ed78d8b0d136693895dab4af81c35e0",
       "signature": "0xdd69abbd1604ff51b81bcece3b01f9f265b0b23db5684fce6a0a5226a003ad140f6b6e5cefe465f4fbd052c2bd70fbe3ecc5ec4bb80f2083ad60acc6edf1f4b31b",
-      "status": "pending",
+      "status": "active",
       "createdAt": "2025-12-04T22:22:46.671Z",
+      "blockchainTxHash": null
+    },
+    {
+      "id": "consent-1764887631152",
+      "patientId": "patient-001",
+      "purpose": "Third-Party Analytics Access",
+      "walletAddress": "0xd860722e7ed78d8b0d136693895dab4af81c35e0",
+      "signature": "0xdd69abbd1604ff51b81bcece3b01f9f265b0b23db5684fce6a0a5226a003ad140f6b6e5cefe465f4fbd052c2bd70fbe3ecc5ec4bb80f2083ad60acc6edf1f4b31b",
+      "status": "active",
+      "createdAt": "2025-12-04T22:33:51.152Z",
+      "blockchainTxHash": null
+    },
+    {
+      "id": "consent-1764887804088",
+      "patientId": "patient-001",
+      "purpose": "Insurance Provider Access",
+      "walletAddress": "0xd860722e7ed78d8b0d136693895dab4af81c35e0",
+      "signature": "0x99ee3b491e8ad85e3329b792177e9394d14abdd9249113888f1044f0ea409f0b35e66ee849881f185ad66906baf1c69e7ac6d7263b6ff97b2557f23cbecac4de1b",
+      "status": "active",
+      "createdAt": "2025-12-04T22:36:44.088Z",
+      "blockchainTxHash": null
+    },
+    {
+      "id": "consent-1764888166059",
+      "patientId": "patient-001",
+      "purpose": "Research Study Participation",
+      "walletAddress": "0xd860722e7ed78d8b0d136693895dab4af81c35e0",
+      "signature": "0xf4f549ca97415d247b9984ac8ac94d4fc444b0d477a990117067b4887a985aca4842a2f776add8bb744fc8069f79c6950dbd79ce7c1a6b278c2e2b093bc76a951b",
+      "status": "pending",
+      "createdAt": "2025-12-04T22:42:46.059Z",
       "blockchainTxHash": null
     }
   ],
