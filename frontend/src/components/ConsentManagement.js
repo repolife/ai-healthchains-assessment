@@ -22,7 +22,7 @@ const ConsentManagement = ({ account, }) => {
       try {
         // TODO: Call apiService.getConsents with appropriate filters
         // TODO: Update consents state
-        const consentsData = await apiService.getConsents(filterStatus, formData.patientId);
+        const consentsData = await apiService.getConsents(formData.patientId, filterStatus);
         console.log('consentsData', consentsData);
         setConsents(consentsData.consents);
       } catch (err) {
@@ -58,6 +58,7 @@ const ConsentManagement = ({ account, }) => {
       debugger
       await apiService.createConsent({patientId: formData.patientId, purpose: formData.purpose, walletAddress: account, signature});
       setShowCreateForm(false);
+      setFilterStatus('active')
     } catch (err) {
       alert('Failed to create consent: ' + err.message);
     }
@@ -165,7 +166,7 @@ const ConsentManagement = ({ account, }) => {
         {/* Map through consents and display them */}
         {/* Show: patientId, purpose, status, createdAt, blockchainTxHash */}
         {/* Add buttons to update status for pending consents */}
-        {consents.map((consent) => (
+        {consents && consents.length > 0 ? consents.map((consent) => (
           <div key={consent.id} className="consent-item">
             <p>Patient ID: {consent.patientId}</p>
             <p>Purpose: {consent.purpose}</p>
@@ -181,11 +182,11 @@ const ConsentManagement = ({ account, }) => {
               </button>
             )}
           </div>
-        ))}
-        <div className="placeholder">
-          <p>Consent list will be displayed here</p>
-          <p>Implement the consent list rendering</p>
-        </div>
+        )) : (
+          <div className="placeholder">
+            <p>No consents found</p>
+          </div>
+        )}
       </div>
     </div>
   );
