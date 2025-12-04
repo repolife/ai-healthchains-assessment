@@ -17,6 +17,10 @@ const PatientDetail = ({ patientId, onBack }) => {
         // TODO: Fetch patient data using apiService.getPatient(patientId)
         // TODO: Fetch patient records using apiService.getPatientRecords(patientId)
         // TODO: Update state with fetched data
+        const patientData = await apiService.getPatient(patientId);
+        const recordsData = await apiService.getPatientRecords(patientId);
+        setPatient(patientData);
+        setRecords(recordsData.records); 
       } catch (err) {
         setError(err.message);
       } finally {
@@ -57,10 +61,17 @@ const PatientDetail = ({ patientId, onBack }) => {
         {/* Show: name, email, dateOfBirth, gender, phone, address, walletAddress */}
         <div className="patient-info-section">
           <h2>Patient Information</h2>
-          {/* Your implementation here */}
-          <div className="placeholder">
-            <p>Display patient information here</p>
-          </div>
+          {patient && (
+            <div className="patient-info">
+              <p>Name: {patient.name}</p>
+              <p>Email: {patient.email}</p>
+              <p>Date of Birth: {patient.dateOfBirth}</p>
+              <p>Gender: {patient.gender}</p>
+              <p>Phone: {patient.phone}</p>
+              <p>Address: {patient.address}</p>
+              <p>Wallet Address: {patient.walletAddress}</p>
+            </div>
+          )}
         </div>
 
         {/* TODO: Display patient records */}
@@ -68,8 +79,17 @@ const PatientDetail = ({ patientId, onBack }) => {
         <div className="patient-records-section">
           <h2>Medical Records ({records.length})</h2>
           {/* Your implementation here */}
-          <div className="placeholder">
-            <p>Display medical records here</p>
+          <div className="records-list">
+          {records && records.length > 0 && records.map((record) => (
+            <div key={record.id} className="record">
+              <p>Type: {record.type}</p>
+              <p>Title: {record.title}</p>
+              <p>Date: {record.date}</p>
+              <p>Doctor: {record.doctor}</p>
+              <p>Hospital: {record.hospital}</p>
+              <p>Status: {record.status}</p>
+            </div>
+          ))}
           </div>
         </div>
       </div>
