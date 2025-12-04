@@ -34,10 +34,11 @@ const PatientList = ({ onSelectPatient }) => {
     }
   };
 
+  
 
   useEffect(() => {
     fetchPatients();
-  }, [searchTerm, currentPage]);
+  }, [searchTerm]);
 
 
     // TODO: Implement search functionality
