@@ -12,13 +12,6 @@ const PatientList = ({ onSelectPatient }) => {
   const [pagination, setPagination] = useState(null);
   const [searchInput, setSearchInput] = useState("");
 
-  // TODO: Implement the fetchPatients function
-  // This function should:
-  // 1. Call apiService.getPatients with appropriate parameters (page, limit, search)
-  // 2. Update the patients state with the response data
-  // 3. Update the pagination state
-  // 4. Handle loading and error states
-
   const fetchPatients = async () => {
     setLoading(true);
     try {
@@ -41,8 +34,6 @@ const PatientList = ({ onSelectPatient }) => {
   }, [searchTerm]);
 
 
-    // TODO: Implement search functionality
-  // Add a debounce or handle search input changes
   const debounedSearchTerm = useMemo(() => debounce((value) => {
     setSearchTerm(value);
   }, 500), []);
@@ -72,7 +63,6 @@ const handleSearch = (e) => {
     <div className="patient-list-container">
       <div className="patient-list-header">
         <h2>Patients</h2>
-        {/* TODO: Add search input field */}
         <input
           type="text"
           placeholder="Search patients..."
@@ -82,11 +72,7 @@ const handleSearch = (e) => {
         />
       </div>
 
-      {/* TODO: Implement patient list display */}
-      {/* Map through patients and display them */}
-      {/* Each patient should be clickable and call onSelectPatient with patient.id */}
       <div className="patient-list">
-        {/* Your implementation here */}
         {patients && patients.length > 0 && patients.map((patient) => (
           <div
             key={patient.id}
@@ -104,11 +90,9 @@ const handleSearch = (e) => {
         ))}
       </div>
 
-      {/* TODO: Implement pagination controls */}
-      {/* Show pagination buttons if pagination data is available */}
       {pagination && (
         <div className="pagination">
-          {/* Your pagination implementation here */}        <button
+          <button
           disabled={pagination.page === 1}
           onClick={() => setCurrentPage(pagination.page - 1)}
         >

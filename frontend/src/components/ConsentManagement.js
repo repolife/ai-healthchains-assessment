@@ -147,12 +147,7 @@ const fetchConsents = async () => {
         </button>
       </div>
 
-      {/* TODO: Display consents list */}
       <div className="consents-list">
-        {/* Your implementation here */}
-        {/* Map through consents and display them */}
-        {/* Show: patientId, purpose, status, createdAt, blockchainTxHash */}
-        {/* Add buttons to update status for pending consents */}
         {consents && consents.length > 0 ? consents.map((consent) => (
           <div key={consent.id} className="consent-item">
             <p>Patient ID: {consent.patientId}</p>

@@ -62,9 +62,7 @@ const TransactionHistory = ({ account }) => {
         )}
       </div>
 
-      {/* TODO: Display transactions list */}
       <div className="transactions-list">
-        {/* Your implementation here */}
         {transactions && transactions.length > 0 ? transactions.map((transaction) => (
           <div key={transaction.id} className="transaction-item">
             <p>Type: {transaction.type}</p>

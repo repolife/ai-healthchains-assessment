@@ -8,15 +8,10 @@ const PatientDetail = ({ patientId, onBack }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // TODO: Implement fetchPatientData function
-  // This should fetch both patient details and their records
   useEffect(() => {
     const fetchPatientData = async () => {
       setLoading(true);
       try {
-        // TODO: Fetch patient data using apiService.getPatient(patientId)
-        // TODO: Fetch patient records using apiService.getPatientRecords(patientId)
-        // TODO: Update state with fetched data
         const patientData = await apiService.getPatient(patientId);
         const recordsData = await apiService.getPatientRecords(patientId);
         setPatient(patientData);
@@ -57,8 +52,6 @@ const PatientDetail = ({ patientId, onBack }) => {
       </div>
 
       <div className="patient-detail-content">
-        {/* TODO: Display patient information */}
-        {/* Show: name, email, dateOfBirth, gender, phone, address, walletAddress */}
         <div className="patient-info-section">
           <h2>Patient Information</h2>
           {patient && (
@@ -74,11 +67,8 @@ const PatientDetail = ({ patientId, onBack }) => {
           )}
         </div>
 
-        {/* TODO: Display patient records */}
-        {/* Show list of medical records with: type, title, date, doctor, hospital, status */}
         <div className="patient-records-section">
           <h2>Medical Records ({records.length})</h2>
-          {/* Your implementation here */}
           <div className="records-list">
           {records && records.length > 0 && records.map((record) => (
             <div key={record.id} className="record">

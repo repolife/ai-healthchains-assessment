@@ -7,7 +7,6 @@ const StatsDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // TODO: Implement fetchStats function
   useEffect(() => {
     const fetchStats = async () => {
       setLoading(true);
