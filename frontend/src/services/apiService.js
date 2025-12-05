@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -39,7 +39,7 @@ export const apiService = {
     const params = {};
     if (patientId) params.patientId = patientId;
     if (status) params.status = status;
-    
+
     const response = await api.get('/consents', { params });
     return response.data;
   },
@@ -63,7 +63,7 @@ export const apiService = {
   getTransactions: async (walletAddress = null, limit = 20) => {
     const params = { limit };
     if (walletAddress) params.walletAddress = walletAddress;
-    
+
     const response = await api.get('/transactions', { params });
     return response.data;
   },
