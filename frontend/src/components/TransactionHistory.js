@@ -30,8 +30,7 @@ const TransactionHistory = ({ account }) => {
   };
 
   const formatDate = (timestamp) => {
-    // TODO: Format the timestamp to a readable date
-    return timestamp;
+    return timestamp ? new Date(timestamp).toLocaleString([], { month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
   };
 
   if (loading) {
