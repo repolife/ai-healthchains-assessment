@@ -11,7 +11,9 @@ const TransactionHistory = ({ account }) => {
     const fetchTransactions = async () => {
       setLoading(true);
       try {
-        const transactionsData = await apiService.getTransactions(account);
+        // Current user doesn't have a patient id so can't fetch transactions unless fetching all transactions
+       // const transactionsData = await apiService.getTransactions(account);
+       const transactionsData = await apiService.getTransactions();
         console.log('transactionsData', transactionsData);
         setTransactions(transactionsData.transactions);
       } catch (err) {
@@ -30,7 +32,7 @@ const TransactionHistory = ({ account }) => {
   };
 
   const formatDate = (timestamp) => {
-    return timestamp ? new Date(timestamp).toLocaleString() : '';
+    return timestamp ? new Date(timestamp).toLocaleString([], { month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
   };
 
   if (loading) {

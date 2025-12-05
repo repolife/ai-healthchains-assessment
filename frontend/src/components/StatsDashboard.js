@@ -12,8 +12,8 @@ const StatsDashboard = () => {
     const fetchStats = async () => {
       setLoading(true);
       try {
-        // TODO: Call apiService.getStats()
-        // TODO: Update stats state
+        const statsData = await apiService.getStats();
+        setStats(statsData);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -43,16 +43,18 @@ const StatsDashboard = () => {
   return (
     <div className="stats-dashboard-container">
       <h2>Platform Statistics</h2>
-      
-      {/* TODO: Display statistics in a nice grid layout */}
-      {/* Show: totalPatients, totalRecords, totalConsents, activeConsents, pendingConsents, totalTransactions */}
       <div className="stats-grid">
-        {/* Your implementation here */}
-        <div className="placeholder">
-          <p>Statistics will be displayed here</p>
-          <p>Implement the statistics dashboard</p>
-        </div>
+    {stats && (
+      <div className="stats-grid">
+        <p>Total Patients: {stats.totalPatients}</p>
+        <p>Total Records: {stats.totalRecords}</p>
+        <p>Total Consents: {stats.totalConsents}</p>
+        <p>Active Consents: {stats.activeConsents}</p>
+        <p>Pending Consents: {stats.pendingConsents}</p>
+        <p>Total Transactions: {stats.totalTransactions}</p>
       </div>
+    )}
+    </div>
     </div>
   );
 };
